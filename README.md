@@ -33,7 +33,7 @@ The `kab` option is driven by a couple of environment variables that can be modi
 The kOS UI project has been configured as an integrated NX mono-repo that incorporates projects for both UI applications and the corresponding kOS models required to integrate with a dispenser running kOS.
 
 - apps
-  - hell-world-ui - The UI application that is served to the browser
+  - hello-world-ui - The UI application that is served to the browser
     - src
       - app
         - components - The UI components that make up the application

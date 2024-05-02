@@ -1,3 +1,5 @@
+// @kdoc-main-view@
+
 import styled from '@emotion/styled';
 import {
   kosComponent,
@@ -29,3 +31,5 @@ export const MainView: React.FunctionComponent = kosComponent(() => {
     </Main>
   );
 });
+
+// @kdoc-main-view@
