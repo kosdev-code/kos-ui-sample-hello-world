@@ -6,7 +6,8 @@
     "kab": "nx run-many --target=kab",
     "kos:update": "npm install @kosdev-code/kos-core-model @kosdev-code/kos-dispense-sdk @kosdev-code/kos-sdk-common @kosdev-code/kos-ui-core @kosdev-code/kos-ui-sdk @kosdev-code/kos-ui-components @kosdev-code/kos-dispense-ui @kosdev-code/kos-dispense-model @kosdev-code/kos-ui-cli",
     "zip": "nx run-many --target=zip",
-    "build": "nx run-many --target=build"
+    "build": "nx run-many --target=build",
+    "serve": "nx run hello-world-ui:serve"
   },
   "private": true,
   "dependencies": {
@@ -18,14 +19,17 @@
     "@module-federation/utilities": "3.0.3-0",
     "@react-spring/web": "^9.7.3",
     "@use-gesture/react": "^10.3.0",
+    "dotenv": "^16.4.5",
     "i18next": "^23.7.8",
     "i18next-browser-languagedetector": "^7.2.0",
     "i18next-http-backend": "^2.4.2",
+    "loglevel": "^1.9.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-i18next": "^13.5.0",
     "react-router-dom": "6.11.2",
-    "reflect-metadata": "^0.2.1"
+    "reflect-metadata": "^0.2.1",
+    "webpack": "^5.91.0"
   },
   "devDependencies": {
     "@babel/core": "^7.14.5",
