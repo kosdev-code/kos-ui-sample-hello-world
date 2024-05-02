@@ -1,0 +1,115 @@
+{
+  "name": "hello-world-ui",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/hello-world-ui/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/hello-world-ui",
+        "index": "apps/hello-world-ui/src/index.html",
+        "baseHref": "/",
+        "main": "apps/hello-world-ui/src/main.ts",
+        "tsConfig": "apps/hello-world-ui/tsconfig.app.json",
+        "assets": [
+          "apps/hello-world-ui/src/favicon.ico",
+          "apps/hello-world-ui/src/assets"
+        ],
+        "styles": [],
+        "scripts": [],
+        "webpackConfig": "apps/hello-world-ui/webpack.config.ts"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/hello-world-ui/src/environments/environment.ts",
+              "with": "apps/hello-world-ui/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "baseHref": "./"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/react:module-federation-dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "hello-world-ui:build",
+        "hmr": true,
+        "port": 4200
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "hello-world-ui:build:development"
+        },
+        "production": {
+          "buildTarget": "hello-world-ui:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "defaultConfiguration": "production",
+      "options": {
+        "buildTarget": "hello-world-ui:build",
+        "watch": false,
+        "port": 4200
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "hello-world-ui:build:development"
+        },
+        "production": {
+          "buildTarget": "hello-world-ui:build:production"
+        }
+      }
+    },
+    "kab": {
+      "command": "node tools/scripts/kabtool.mjs build hello-world-ui && node tools/scripts/kabtool.mjs list hello-world-ui ",
+      "options": {
+        "outputPath": "dist/archives/packages/hello-world-ui/",
+        "zipName": "ui.zip",
+        "kabName": "hello-world-ui.kab"
+      },
+      "dependsOn": ["zip"]
+    },
+    "zip": {
+      "command": "node tools/scripts/archiver.js hello-world-ui",
+      "options": {
+        "outputPath": "dist/archives/packages/hello-world-ui/",
+        "zipName": "ui.zip"
+      },
+      "dependsOn": ["build", "descriptor"]
+    },
+    "descriptor": {
+      "command": "node tools/scripts/descriptor.mjs hello-world-ui",
+      "options": {
+        "outputPath": "dist/apps/hello-world-ui",
+        "fileName": "descriptor.json"
+      },
+      "dependsOn": ["build"]
+    }
+  },
+  "tags": []
+}

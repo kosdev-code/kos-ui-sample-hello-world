@@ -1,0 +1,13 @@
+{
+  "name": "hello-world-ui",
+  "type": "helloworld.cui",
+  "version": "0.1.0",
+  "kos": {
+    "localization": {
+      "defaultLocale": "en",
+      "namespaces": {
+        "hello-world": {}
+      }
+    }
+  }
+}
